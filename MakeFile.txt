@@ -1,0 +1,19 @@
+CC = gcc
+CFLAGS = -Wall -pthread
+TARGET = mm_clasica
+
+all: $(TARGET)
+
+$(TARGET): main.o mm_clasica.o
+	$(CC) $(CFLAGS) -o $(TARGET) main.o mm_clasica.o
+
+main.o: main.c Interfaz.h
+	$(CC) $(CFLAGS) -c main.c
+
+mm_clasica.o: mm_clasica.c Interfaz.h
+	$(CC) $(CFLAGS) -c mm_clasica.c
+
+clean:
+	rm -f *.o $(TARGET)
+
+.PHONY: all clean
